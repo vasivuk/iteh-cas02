@@ -35,7 +35,7 @@ CREATE TABLE `prijave` (
   `predmet` varchar(255) NOT NULL,
   `katedra` varchar(255) NOT NULL,
   `sala` varchar(255) NOT NULL,
-  `datum` date NOT NULL DEFAULT current_timestamp()
+  `datum` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

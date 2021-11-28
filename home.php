@@ -1,3 +1,23 @@
+<?php
+require "dbBroker.php";
+require "model/prijava.php";
+
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header("Location: index.php");
+    exit();
+}
+
+$podaci = Prijava::getAll($conn);
+if (!$podaci){
+    echo "Nastala je greska pri preuzimanju podataka";
+    die();
+}
+if ($podaci->num_rows == 0){
+    echo "Nema prijava na kolokvijume";
+    die();
+} else {
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,13 +62,13 @@
                 <th scope="col">Predmet</th>
                 <th scope="col">Katedra</th>    
                 <th scope="col">Sala</th>
-                <th scope="col">Datum</th>
+                <th scope="col">Datum kolokvijuma</th>
             </tr>
             </thead>
             <tbody>
             <?php
-            while ($red = $result->fetch_array()) {
-                ?>
+            while ($red = $podaci->fetch_array()):
+            ?>
                 <tr>
                     <td><?php echo $red["predmet"] ?></td>
                     <td><?php echo $red["katedra"] ?></td>
@@ -62,9 +82,10 @@
                     </td>
 
                 </tr>
-                <?php
+            <?php
+                endwhile;
             }
-             ?>
+            ?>
             </tbody>
         </table>
         <div class="row" >
@@ -77,7 +98,7 @@
                 <button id="btn-obrisi" class="btn btn-danger" style="background-color: red; border: 1px solid white;">Obrisi</button>
             </div>
 
-            <div class="col-md-2" style="text-align: right>; color:" >
+            <div class="col-md-2" style="text-align: right" >
                     <button id="btn-sortiraj" class="btn btn-normal" onclick="sortTable()">Sortiraj</button>
                 </div>
 
@@ -195,8 +216,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
-
-
 
 </body>
 </html>
