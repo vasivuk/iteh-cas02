@@ -67,6 +67,7 @@ if ($podaci->num_rows == 0){
             </thead>
             <tbody>
             <?php
+            // moze i fetch_all
             while ($red = $podaci->fetch_array()):
             ?>
                 <tr>
@@ -110,7 +111,7 @@ if ($podaci->num_rows == 0){
 <div class="modal fade" id="myModal" role="dialog" >
     <div class="modal-dialog">
 
-        <!--Sadrzaj modala-->
+        <!--Sadrzaj Zakazi modala-->
         <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -159,7 +160,7 @@ if ($podaci->num_rows == 0){
 <div class="modal fade" id="izmeniModal" role="dialog">
     <div class="modal-dialog">
 
-        <!-- Modal sadrzaj-->
+        <!-- Izmeni Modal sadrzaj-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
